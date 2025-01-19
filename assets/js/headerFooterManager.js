@@ -45,12 +45,15 @@ class SpecialFooter extends HTMLElement {
                 width: 30px;
             }
         </style>
-        <p>Punkhub! Proudly performing the best punk in Portsmouth, for the best pubs in Portsmouth!</p>
+        <h3>Punkhub! Proudly performing the best punk in Portsmouth, for the best pubs in Portsmouth!</h3>
+        <p>Follow us on Facebook to keep up-to-date on future gigs</p>
+        <p><p>Watch and listen on youtube and soundcloud</p>
         <nav id="social-nav">
             <a href="https://www.facebook.com/people/Punkhub/100093279042809/?_rdr" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://www.youtube.com/playlist?list=PL5YYo0Ot8TXMCwemoJ1bxqQpMlxPWKFyG" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://soundcloud.com/punkhub/sets/punkhub-demo-recordings-2024" target="_blank"><i class="fab fa-soundcloud"></i></a>
         </nav>
+        
         `;
     }
 }

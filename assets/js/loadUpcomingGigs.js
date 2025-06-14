@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Find if today is a gig day (compare local date parts)
                 const isGigDay = gigs.some(gig => {
                     const gigDateObj = parseDate(gig.date);
-                    if (!gigDateObj) return false;
+                    if (!gigDateObj || isNaN(gigDateObj)) return false;
                     const gigDateStr = gigDateObj.toISOString().slice(0, 10);
                     return gigDateStr === todayStr;
                 });
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (isGigDay) {
                     const gig = gigs.find(gig => {
                         const gigDateObj = parseDate(gig.date);
-                        if (!gigDateObj) return false;
+                        if (!gigDateObj || isNaN(gigDateObj)) return false;
                         const gigDateStr = gigDateObj.toISOString().slice(0, 10);
                         return gigDateStr === todayStr;
                     });
@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     const nextGig = gigs[0];
                     const formattedDate = formatDate(nextGig.date);
                     nextGigElement.innerHTML = `
-                        <h2>${formattedDate}</h2>
-                        <h3>${nextGig.venue}</h3>
-                        <h3>${nextGig.time}</h3>
-                    `;
+            <h2>${formattedDate}</h2>
+            <h3>${nextGig.venue}</h3>
+            <h3>${nextGig.time}</h3>
+        `;
                 }
             }
 

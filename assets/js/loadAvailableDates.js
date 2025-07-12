@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     const availableList = availableDates.map(dateInfo => `
                         <div class="date-item available">
                             <div class="date-main">${formatDate(dateInfo.date)}</div>
-                            <div class="date-raw">${dateInfo.date}</div>
                             ${dateInfo.notes ? `<div class="date-notes">${dateInfo.notes}</div>` : ''}
                         </div>
                     `).join('');

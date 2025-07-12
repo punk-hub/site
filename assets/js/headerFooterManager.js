@@ -18,6 +18,7 @@ class SpecialHeader extends HTMLElement {
             <a href="songs.html">Songs</a>
             <a href="gigHistory.html">Gig History</a>
             <a href="comingUp.html">Upcoming Gigs</a>
+            <a href="availableDates.html">Available Dates</a>
             <a href="contact.html">Contact Us</a>
         </nav>
         `;

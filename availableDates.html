@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Punkhub - Available Dates</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/headerFooterManager.js" defer></script>
+    <script src="assets/js/loadAvailableDates.js" defer></script>
+    <style>
+        /* Additional styles specific to available dates page */
+        .dates-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .dates-section {
+            margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .dates-section h2 {
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .date-count {
+            background-color: var(--green);
+            color: var(--black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .date-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--green);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .date-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 168, 89, 0.3);
+        }
+
+        .date-item.unavailable {
+            border-left-color: #ff4444;
+            opacity: 0.7;
+        }
+
+        .date-item.unavailable:hover {
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+        }
+
+        .date-main {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .date-raw {
+            font-size: 0.9em;
+            color: #ccc;
+            font-family: monospace;
+            margin-bottom: 8px;
+        }
+
+        .date-notes {
+            font-size: 0.95em;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        .no-dates {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff4444;
+            padding: 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .contact-info {
+            background-color: rgba(0, 168, 89, 0.1);
+            border: 2px solid var(--green);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: var(--green);
+            margin-bottom: 15px;
+        }
+
+        .toggle-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--green);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--green);
+            color: var(--black);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .dates-container {
+                padding: 10px;
+            }
+            
+            .dates-section {
+                padding: 15px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <special-header></special-header>
+    <main>
+        <img src="assets/images/logoCut.png" alt="Punkhub Logo" id="logo">
+        <div class="dates-container">
+            <h1>Available Dates for Booking</h1>
+            
+            <div class="intro-text">
+                <p>Below are the dates when Punkhub is available for gigs. If you're interested in booking us for any of these dates, please get in touch!</p>
+            </div>
+
+            <!-- Available Dates Section -->
+            <div class="dates-section">
+                <div class="section-header">
+                    <h2>Available Dates</h2>
+                    <span class="date-count"><span id="available-count">Loading...</span> dates</span>
+                </div>
+                <div id="available-dates-list">
+                    <p class="no-dates">Loading available dates...</p>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3>Interested in Booking?</h3>
+                <p>Please visit our <a href="contact.html" style="color: var(--green); text-decoration: underline;">Contact Page</a> to get in touch about booking any of these available dates.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Removed toggle functionality as unavailable dates section was removed
+    </script>
+
+    <special-footer></special-footer>
+</body>
+</html>

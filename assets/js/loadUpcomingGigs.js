@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('assets/Data/upcomingGigs.csv')
+    // Add cache busting to CSV fetch
+    const cacheBustParam = `?v=${Date.now()}`;
+    fetch(`assets/Data/upcomingGigs.csv${cacheBustParam}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

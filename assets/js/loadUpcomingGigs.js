@@ -36,6 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 return da - db;
             });
 
+            // Filter out past dates (only show future gigs)
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Set to start of day for comparison
+            
+            const futureGigs = gigs.filter(gig => {
+                const gigDate = parseDate(gig.date);
+                return gigDate && gigDate >= today;
+            });
+
             function formatDate(dateStr) {
                 const dateObj = parseDate(dateStr);
                 if (!dateObj || isNaN(dateObj)) return 'Invalid Date';
@@ -58,13 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const nextGigElement = document.getElementById('next-gig-details');
             const nextGigTitle = document.getElementById('next-gig-title');
-            if (nextGigElement && gigs.length > 0) {
+            if (nextGigElement && futureGigs.length > 0) {
                 // Get today's date in local time, formatted as YYYY-MM-DD
                 const todayObj = new Date();
                 const todayStr = todayObj.toISOString().slice(0, 10);
 
                 // Find if today is a gig day (compare local date parts)
-                const isGigDay = gigs.some(gig => {
+                const isGigDay = futureGigs.some(gig => {
                     const gigDateObj = parseDate(gig.date);
                     if (!gigDateObj || isNaN(gigDateObj)) return false;
                     const gigDateStr = gigDateObj.toISOString().slice(0, 10);
@@ -72,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (isGigDay) {
-                    const gig = gigs.find(gig => {
+                    const gig = futureGigs.find(gig => {
                         const gigDateObj = parseDate(gig.date);
                         if (!gigDateObj || isNaN(gigDateObj)) return false;
                         const gigDateStr = gigDateObj.toISOString().slice(0, 10);
@@ -81,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (nextGigTitle) nextGigTitle.style.display = 'none';
                     nextGigElement.innerHTML = `<h2>ITS GIG DAY</h2><h2 style="color: green; font-weight: bold;">We'll see you at ${gig.venue} at ${gig.time}</h2>`;
                 } else {
-                    const nextGig = gigs[0];
+                    const nextGig = futureGigs[0];
                     const formattedDate = formatDate(nextGig.date);
                     nextGigElement.innerHTML = `
             <h2>${formattedDate}</h2>
@@ -89,11 +98,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <h3>${nextGig.time}</h3>
         `;
                 }
+            } else if (nextGigElement) {
+                // No future gigs available
+                nextGigElement.innerHTML = '<p>No upcoming gigs scheduled at the moment. Check back soon!</p>';
             }
 
             const futureGigsContainer = document.getElementById('future-gigs-list');
-            if (futureGigsContainer && gigs.length > 1) {
-                gigs.slice(1).forEach(gig => {
+            if (futureGigsContainer && futureGigs.length > 1) {
+                futureGigs.slice(1).forEach(gig => {
                     const formattedDate = formatDate(gig.date);
                     const div = document.createElement('div');
                     div.innerHTML = `${formattedDate} at ${gig.venue}, ${gig.time}`;

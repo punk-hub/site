@@ -70,24 +70,32 @@ document.addEventListener("DOMContentLoaded", function () {
             const nextGigElement = document.getElementById('next-gig-details');
             const nextGigTitle = document.getElementById('next-gig-title');
             if (nextGigElement && futureGigs.length > 0) {
-                // Get today's date in local time, formatted as YYYY-MM-DD
+                // Get today's local year, month, day
                 const todayObj = new Date();
-                const todayStr = todayObj.toISOString().slice(0, 10);
+                const todayYear = todayObj.getFullYear();
+                const todayMonth = todayObj.getMonth(); // 0-indexed
+                const todayDate = todayObj.getDate();
 
                 // Find if today is a gig day (compare local date parts)
                 const isGigDay = futureGigs.some(gig => {
                     const gigDateObj = parseDate(gig.date);
                     if (!gigDateObj || isNaN(gigDateObj)) return false;
-                    const gigDateStr = gigDateObj.toISOString().slice(0, 10);
-                    return gigDateStr === todayStr;
+                    return (
+                        gigDateObj.getFullYear() === todayYear &&
+                        gigDateObj.getMonth() === todayMonth &&
+                        gigDateObj.getDate() === todayDate
+                    );
                 });
 
                 if (isGigDay) {
                     const gig = futureGigs.find(gig => {
                         const gigDateObj = parseDate(gig.date);
                         if (!gigDateObj || isNaN(gigDateObj)) return false;
-                        const gigDateStr = gigDateObj.toISOString().slice(0, 10);
-                        return gigDateStr === todayStr;
+                        return (
+                            gigDateObj.getFullYear() === todayYear &&
+                            gigDateObj.getMonth() === todayMonth &&
+                            gigDateObj.getDate() === todayDate
+                        );
                     });
                     if (nextGigTitle) nextGigTitle.style.display = 'none';
                     nextGigElement.innerHTML = `<h2>ITS GIG DAY</h2><h2 style="color: green; font-weight: bold;">We'll see you at ${gig.venue} at ${gig.time}</h2>`;

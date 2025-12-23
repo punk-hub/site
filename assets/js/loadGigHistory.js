@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.text();
         })
         .then(data => {
-            const rows = data.split('\n').slice(1); // Skip the header row
+            const rows = data.split('\n');
             let gigs = rows.map((row, index) => {
                 const [gigNumber, date, venue] = row.split(',');
                 const formattedDate = formatDate(date?.trim()); // Format the date
